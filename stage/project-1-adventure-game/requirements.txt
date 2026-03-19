@@ -1,0 +1,2 @@
+# Project 1: Python Adventure Game
+# No external packages needed - uses only built-in Python
