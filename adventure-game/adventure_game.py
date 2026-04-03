@@ -3,54 +3,82 @@
 
 print("Adventure Game Setup Complete!")
 
-# function start_game() to display game intro and ask player for their name and store it in a variable.
-"""
- Now provide the player w initial choice (explore a forest or enter a cave)
-"""
+# main game loop
+
 def start_game():
     while True:
-        print("Welcome to the Adventure Game!")
+        print("\nWelcome to the Adventure Game!")
         player_name = input("Please enter your name: ")
-        print(f"Hello, {player_name}! Your adventure begins now.")
-        
-        print("You find yourself at a crossroads. Do you want to explore the forest or enter the cave?")
+        print(f"Hello, {player_name}! Your quest is to find the legendary treasure.")
+        print("Think critically, make wise decisions, and trust your instincts.")
+
+        print("\nYou find yourself at a crossroads. Do you want to explore the forest or enter the cave?")
         choice = input("Type 'forest' to explore the forest or 'cave' to enter the cave: ").lower()
-        
+
         if choice == 'forest':
-            forest_path()
+            outcome = forest_path()
         elif choice == 'cave':
-            cave_path()
+            outcome = cave_path()
         else:
             print("Invalid choice. Please choose 'forest' or 'cave'.")
-        
+            outcome = 'continue'
+
+        if outcome == 'win':
+            print("\nCongratulations! You found the treasure and won the game!")
+        elif outcome == 'lose':
+            print("\nOh no! Your decision led to the end of your adventure.")
+
         restart = input("\nWould you like to play again? (yes/no): ").lower()
         if restart != 'yes':
             print("Thanks for playing! Goodbye!")
-            break    
+            break
+
 
 def forest_path():
-  """
-    describes the forset scenario. provide the player with choices to follow a river or climb a tree) Use if-else to hande the choices
-  """
-  print("You are in the forest. You see a river and a tall tree.")
-  choice = input("Do you want to follow the river or climb the tree? Type 'river' or 'tree': ").lower()       
-  if choice == 'river':
-    print("You follow the river and find a hidden waterfall with a secret cave behind it!")
-  elif choice == 'tree':
-    print("You climb the tree and find a nest with a golden egg inside!")
-  else:
-    print("Invalid choice. Please choose 'river' or 'tree'.")     
+    print("\nYou are in the forest. You see a river and a tall tree.")
+    choice = input("Do you want to follow the river or climb the tree? Type 'river' or 'tree': ").lower()
+
+    if choice == 'river':
+        print("You follow the river and find a hidden waterfall with a secret cave behind it.")
+        second_choice = input("Do you enter the secret cave? (yes/no): ").lower()
+        if second_choice == 'yes':
+            print("Inside the cave, you discover the ancient treasure chest.")
+            return 'win'
+        else:
+            print("You walk away and miss the treasure.")
+            return 'lose'
+
+    elif choice == 'tree':
+        print("You climb the tree and a branch breaks, dropping you into thorny bushes.")
+        print("You manage to get up but you are injured and must end your adventure.")
+        return 'lose'
+
+    else:
+        print("Invalid choice. Please choose 'river' or 'tree'.")
+        return 'continue'
+
 
 def cave_path():
-   """ describes the cave scenario. provide the player with choices  (light a torche or proceed in the dark) use conditions to determin the outcome   
-   """
-   print("You are in the cave. You see a dark tunnel and a small alcove.")    
-   choice = input("Do you want to explore deeper into the cave or take a rest? Type 'explore' or 'rest': ").lower()       
-   if choice == 'explore':
-     print("You explore deeper into the cave and find an ancient artifact that grants you magical powers!")
-   elif choice == 'rest':
-     print("You take a rest in the alcove and find a hidden stash of supplies that will help you on your adventure!")
-   else:
-     print("Invalid choice. Please choose 'explore' or 'rest'.")
+    print("\nYou are in the cave. You see a dark tunnel and a small alcove.")
+    choice = input("Do you want to explore deeper into the cave or take a rest? Type 'explore' or 'rest': ").lower()
+
+    if choice == 'explore':
+        print("You explore deeper into the cave and encounter a sleeping dragon.")
+        second_choice = input("Do you sneak past the dragon or retreat? (sneak/retreat): ").lower()
+        if second_choice == 'sneak':
+            print("You sneak past the dragon and find a chest full of treasure.")
+            return 'win'
+        else:
+            print("You retreat safely but leave the treasure behind.")
+            return 'lose'
+
+    elif choice == 'rest':
+        print("While resting in the alcove, bandits find you and chase you out.")
+        return 'lose'
+
+    else:
+        print("Invalid choice. Please choose 'explore' or 'rest'.")
+        return 'continue'
+
 
 start_game() 
