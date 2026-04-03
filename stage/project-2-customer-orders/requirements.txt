@@ -1,0 +1,2 @@
+# Project 2: Customer Orders Analysis
+# No external packages - uses only built-in Python
